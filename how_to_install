@@ -117,7 +117,7 @@ INSTALLAZIONE:
  
  
  
-#SERVICES > put them in /etc/init.d/ (SET as executable)
+#SERVICES > put them in /etc/prime/services/ (SET as executable)
  
  "prime_logout.waiting"                  ||   service that waits you logout to switch graphics
 
