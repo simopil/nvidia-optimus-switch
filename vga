@@ -5,7 +5,7 @@ current=$(sed -n '3p' /etc/prime/config)
 if [[ $1 = "switch" ]]; then
      if [[ $2 = "intel" ]]; then
                if [[ $current = "I" ]]; then
-                 echo "Scheda Intel già in uso!!!"
+                 echo "Intel VGA already in use!!!"
                  else
                  sudo sed -i '1 c2' /etc/prime/config
                  sudo systemctl start prime_logout.waiting &
@@ -13,33 +13,32 @@ if [[ $1 = "switch" ]]; then
                  fi
    elif [[ $2 = "nvidia" ]]; then
                if [[ $current = "D" ]]; then
-                 echo "Scheda Nvidia già in uso!!!"
+                 echo "Nvidia VGA already in use!!!"
                  else
                  sudo sed -i '1 c1' /etc/prime/config
                  sudo systemctl start prime_logout.waiting &
                  #sudo systemctl isolate multi-user.target
                  fi      
       else
-                echo "Uso: vga switch intel|nvidia"     
+                echo "Use: vga switch intel|nvidia"     
          fi
 
 elif [[ $1 = "default" ]]; then
      if [[ $2 = "intel" ]]; then
-        echo "imposto la intel predefinita al boot!"
+        echo "Boot default: Intel"
         sudo sed -i '2 cI' /etc/prime/config
    elif [[ $2 = "nvidia" ]]; then
-        echo "imposto la nvidia predefinita al boot!"
+        echo "Boot default: Nvidia"
         sudo sed -i '2 cD' /etc/prime/config  
    elif [[ $2 = "keep" ]]; then
         sudo sed -i '2 cL' /etc/prime/config   
-        echo "ricordo VGA sessione precedente!"
+        echo "Boot default: Latest Session"
     else
-        echo "Uso: vga default intel|nvidia|keep" 
+        echo "Use: vga default intel|nvidia|keep" 
         fi
 
 else
  
-echo -e "USO: \n\nvga switch intel|nvidia : \nModifica istantaneamente 
-la VGA utilizzata (richiede logout)\n\n\nvga default intel|nvidia|keep: \nimposta la VGA predefinita al boot (keep > ricorda sessione precedente)"
+echo -e "USE: \n\nvga switch intel|nvidia : \nHot Switch (logout required)\n\n\nvga default intel|nvidia|keep: \nset default VGA on boot (keep > remember latest session)"
 
 fi
