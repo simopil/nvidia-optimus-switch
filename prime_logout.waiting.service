@@ -1,0 +1,13 @@
+# /etc/systemd/system/prime_logout.waiting.service
+#
+
+[Unit]
+Description=suse-prime logout waiting service
+
+[Service]
+Type=forking
+ExecStart=/bin/sh -c "/etc/prime/services/prime_logout.waiting"
+ExecStop=
+
+[Install]
+WantedBy=graphical.target
