@@ -1,7 +1,7 @@
 [EN]
 DESCRIPTION:
 
-SUSE-PRIME: a tool that's let you choose intel or nvidia card for X session in a Optimus technology laptop, performances are better than bumblebee.
+SUSE-PRIME: a tool that let you choose intel or nvidia card for X session in a Optimus technology laptop, performances are better than bumblebee.
 
 My script provides:
 
