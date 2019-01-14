@@ -1,3 +1,53 @@
+[EN]
+DESCRIPTION:
+
+SUSE-PRIME: a tool that's let you choose intel or nvidia card for X session in a Optimus technology laptop, performances are better than bumblebee.
+
+My script provides:
+
+>> Extended battery life and cooler temperatures, because suse-prime not put nvidia card in sleep mode when intel one is active. This feature is provided by nouveau driver, without bumblebee or any ACPI Switch
+
+>> A choice to change default vga on boot, or remember the latest session
+
+USAGE:
+
+./vga switch [intel | nvidia ]           ## system wait for logout to switch video card
+
+./vga default [intel | nvidia | keep]    ## set default vga on boot
+
+
+
+SETUP:
+
+1) Make sure bumblebee is NOT installed, otherwise uninstall it: sudo zypper rm bumblebee nvidia-bumblebee bbswitch primus
+
+2) Install nvidia proprietary drivers: sudo zypper in x11-video-nvidiaG[ 03 | 04 | 05 ]
+
+3) Make sure package "suse-prime" is present
+
+4) Put all files in at the locations shown (LOOK DOWN)
+
+5) Modules: Edit /etc/modprobe.d/nvidia-default.conf
+
+          #blacklist nouveau
+          blacklist nvidia
+          blacklist nvidia_drm
+          blacklist nvidia_modeset
+          blacklist nvidia_uvm
+
+6) Update initrd: sudo mkinitrd
+
+7) Services: service prime_logout.waiting    must be set as "manual"
+             service prime_switch            must be set "ON BOOT"
+             "systemctl enable prime_switch"
+
+READ: if you are not using KDE, prime_logout.waiting daemon will not work, to fix it:
+      
+      Edit prime_logout.waiting: change "ksmserver" with a name of process that stops when you do logout from your DE
+
+
+
+[IT]
 DESCRIZIONE:
 
 Trattasi di una serie di script che consentono di estendere le funzionalità di suse-prime
