@@ -1,17 +1,17 @@
 [EN]
 DESCRIPTION:
 
-SUSE-PRIME: a tool that let you choose intel or nvidia card for X session in a Optimus technology laptop, performances are better than bumblebee.
+SUSE-PRIME: a tool that lets you choose intel or nvidia card for X session in a Optimus technology laptop, performances are better than bumblebee.
 
 My script provides:
 
->> Extended battery life and cooler temperatures, because suse-prime not put nvidia card in sleep mode when intel one is active. This feature is provided by nouveau driver, without bumblebee or any ACPI Switch
+>> Extended battery life and cooler temperatures, because suse-prime DO NOT put nvidia card in sleep mode when intel one is active. This feature is provided by Nouveau driver, without bumblebee or any ACPI Switch
 
 >> A choice to change default vga on boot, or remember the latest session
 
 USAGE:
 
-./vga switch [intel | nvidia ]           ## system wait for logout to switch video card
+./vga switch [intel | nvidia ]           ## system waits for logout to switch video card
 
 ./vga default [intel | nvidia | keep]    ## set default vga on boot
 
@@ -37,14 +37,12 @@ SETUP:
 
 6) Update initrd: sudo mkinitrd
 
-7) Services: service prime_logout.waiting    must be set as "manual"
-             service prime_switch            must be set "ON BOOT"
-             "systemctl enable prime_switch"
+7) Services: service prime_logout.waiting    must be set as "manual"  (  ... nothing ... )
+             service prime_switch            must be set "ON BOOT"    (sudo systemctl enable prime_switch )
 
 READ: if you are not using KDE, prime_logout.waiting daemon will not work, to fix it:
       
-      Edit prime_logout.waiting: change "ksmserver" with a name of process that stops when you do logout from your DE
-
+      Edit prime_logout.waiting: change "ksmserver" with a process that you know for sure is stopped when you logout from your DE
 
 
 [IT]
@@ -58,7 +56,7 @@ Funzionalità aggiunte:
 
 >> Quando è attiva la gpu integrata, la vga discreta viene spenta totalmente, consentendo di estendere la durata della batteria ed abbassare le temperature
 
-           >> Questo è reso possibile grazie ai driver liberi nouveau, che sono in grado di spegnere la vga dedicata quando in standby. Questo senza necessità di bumblebee o altri acpi switch
+           >> Questo è reso possibile grazie ai driver liberi Nouveau, che sono in grado di spegnere la vga dedicata quando in standby. Questo senza necessità di bumblebee o altri acpi switch
            
 
 
@@ -107,17 +105,17 @@ INSTALLAZIONE:
         
 #EXECUTABLES
  
- "vga"    > put where you prefere        ||   this is executable tool and provides you all options
+ "vga"    > put where you prefer        ||   executable tool, provides you all options
  
  
  
 #CONFIG_FILES
  
- "config" > put in /etc/prime/"          ||   this is main configuration file with all settings, DO NOT EDIT
+ "config" > put in /etc/prime/"          ||   main configuration file with all settings, DO NOT EDIT
  
  
  
-#SERVICES > put them in /etc/prime/services/ (SET as executable)
+#SERVICES > put them in /etc/prime/services/ (SET as executable) [ sudo chmod +x prime_logout.waiting && sudo chmod +x prime_switch ]
  
  "prime_logout.waiting"                  ||   service that waits you logout to switch graphics
 
