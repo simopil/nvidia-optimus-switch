@@ -1,0 +1,84 @@
+DESCRIZIONE:
+
+Trattasi di una serie di script che consentono di estendere le funzionalità di suse-prime
+
+                      SUSE-PRIME: consente di avviare una sessione di X con la vga integrata oppure con la nvidia dedicata nei laptop dotati di tecnologia nvidia optimus.
+                      
+Funzionalità aggiunte:
+
+>> Quando è attiva la gpu integrata, la vga discreta viene spenta totalmente, consentendo di estendere la durata della batteria ed abbassare le temperature
+
+           >> Questo è reso possibile grazie ai driver liberi nouveau, che sono in grado di spegnere la vga dedicata quando in standby. Questo senza necessità di bumblebee o altri acpi switch
+           
+
+
+>> Possibilità di selezionare la VGA preferita al boot oppure di ricordare quella precedentemente utilizzata
+
+
+
+INSTALLAZIONE:
+
+1) Assicuratevi che bumblebee non sia installato, in caso contrario: zypper rm bumblebee nvidia-bumblebee bbswitch primus
+
+2) Installate i driver NVIDIA proprietari: zypper in x11-video-nvidiaG[ 03 | 04 | 05 ]
+
+3) Assicuratevi che assieme ai driver sia stato installato anche il pacchetto "suse-prime"
+
+4) Copiate tutti i file nelle posizioni indicate (VEDI SOTTO)
+
+5) Moduli: Editate /etc/modprobe.d/nvidia-default.conf in questo modo
+          
+          
+          #blacklist nouveau
+          blacklist nvidia
+          blacklist nvidia_drm
+          blacklist nvidia_modeset
+          blacklist nvidia_uvm
+          
+          
+6) Aggiornate l'initrd: sudo mkinitrd
+
+7) Servizi: Il servizio prime_logout.waiting deve essere settato come di default in avvio "manuale"
+            Il servizio prime_switch         deve essere impostato in modalità di avvio "al boot"
+           
+           
+- Nota: Se non utilizzate KDE, il demone che attende il log-out per effettuare lo switch non funzionerà. Per impostarlo correttamente:
+          
+        Editate il file prime_logout.waiting
+        Dovete sostituire la voce "ksmserver" con un processo che siete sicuri venga arrestato nel momento in cui voi effettuate il logout dal vostro DE
+
+
+        
+        
+        
+        
+      # POSIZIONI DEI FILE -- FILE PATHs #  
+
+        
+#EXECUTABLES
+ 
+ "vga"    > put where you prefere        ||   this is executable tool and provides you all options
+ 
+ 
+ 
+#CONFIG_FILES
+ 
+ "config" > put in /etc/prime/"          ||   this is main configuration file with all settings, DO NOT EDIT
+ 
+ 
+ 
+#SERVICES > put them in /etc/init.d/ (SET as executable)
+ 
+ "prime_logout.waiting"                  ||   service that waits you logout to switch graphics
+
+ "prime_switch"                          ||   core of entire script
+  
+
+
+#SERVICES_CONFIG > put them in /etc/systemd/system/
+
+"prime_logout.waiting.service"          ||   service that waits you logout to switch graphics [CONFIG]
+
+"prime_switch.service"                  ||   core of entire script [CONFIG]
+
+(NOTE: prime_logout.waiting "start" must be set MANUAL, prime_switch must be ON BOOT)
