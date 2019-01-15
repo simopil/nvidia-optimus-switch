@@ -50,15 +50,13 @@ DESCRIZIONE:
 
 Trattasi di una serie di script che consentono di estendere le funzionalità di suse-prime
 
-                      SUSE-PRIME: consente di avviare una sessione di X con la vga integrata oppure con la nvidia dedicata nei laptop dotati di tecnologia nvidia optimus.
+SUSE-PRIME: consente di avviare una sessione di X con la vga integrata oppure con la nvidia dedicata nei laptop dotati di tecnologia nvidia optimus.
                       
 Funzionalità aggiunte:
 
 >> Quando è attiva la gpu integrata, la vga discreta viene spenta totalmente, consentendo di estendere la durata della batteria ed abbassare le temperature
 
-           >> Questo è reso possibile grazie ai driver liberi Nouveau, che sono in grado di spegnere la vga dedicata quando in standby. Questo senza necessità di bumblebee o altri acpi switch
-           
-
+>> Questo è reso possibile grazie ai driver liberi Nouveau, che sono in grado di spegnere la vga dedicata quando in standby. Questo senza necessità di bumblebee o altri acpi switch
 
 >> Possibilità di selezionare la VGA preferita al boot oppure di ricordare quella precedentemente utilizzata
 
