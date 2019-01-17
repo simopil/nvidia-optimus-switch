@@ -27,16 +27,9 @@ SETUP:
 
 4) Put all files in at the locations shown (LOOK DOWN)
 
-5) Modules: Create /etc/modprobe.d/suse-prime.conf
+5) Update initrd: sudo mkinitrd
 
-          blacklist nvidia
-          stblacklist nvidia_drm
-          blacklistblacklist nvidia_modeset
-          blacklist nvidia_uvm
-
-6) Update initrd: sudo mkinitrd
-
-7) Services: service prime_logout.waiting    must be set as "manual"  (  ... nothing ... )
+6) Services: service prime_logout.waiting    must be set as "manual"  (  ... nothing ... )
              service prime_switch            must be set "ON BOOT"    (sudo systemctl enable prime_switch )
 
 READ: if you are not using KDE, prime_logout.waiting daemon will not work, to fix it:
@@ -70,19 +63,10 @@ INSTALLAZIONE:
 3) Assicuratevi che assieme ai driver sia stato installato anche il pacchetto "suse-prime"
 
 4) Copiate tutti i file nelle posizioni indicate (VEDI SOTTO)
+          
+5) Aggiornate l'initrd: sudo mkinitrd
 
-5) Moduli: Create il file /etc/modprobe.d/nvidia-default.conf 
-          
-          
-          blacklist nvidia
-          blacklist nvidia_drm
-          blacklist nvidia_modeset
-          blacklist nvidia_uvm
-          
-          
-6) Aggiornate l'initrd: sudo mkinitrd
-
-7) Servizi: Il servizio prime_logout.waiting deve essere settato come di default in avvio "manuale"
+6) Servizi: Il servizio prime_logout.waiting deve essere settato come di default in avvio "manuale"
             Il servizio prime_switch         deve essere impostato in modalità di avvio "al boot"
            
            
@@ -98,6 +82,9 @@ INSTALLAZIONE:
         
       # POSIZIONI DEI FILE -- FILE PATHs #  
 
+#RULES
+
+"suse-prime.conf"    >   put in /etc/modprobe.d    ||  modprobe rules for boot and modesetting
         
 #EXECUTABLES
  
