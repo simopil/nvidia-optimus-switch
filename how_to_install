@@ -27,13 +27,12 @@ SETUP:
 
 4) Put all files in at the locations shown (LOOK DOWN)
 
-5) Modules: Edit /etc/modprobe.d/nvidia-default.conf
+5) Modules: Create /etc/modprobe.d/suse-prime.conf
 
-          #blacklist nouveau
-          blacklist nvidia
-          blacklist nvidia_drm
-          blacklist nvidia_modeset
-          blacklist nvidia_uvm
+          alias nvidia off
+          alias nvidia_drm off
+          alias nvidia_modeset off
+          alias nvidia_uvm off
 
 6) Update initrd: sudo mkinitrd
 
