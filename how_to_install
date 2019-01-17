@@ -71,14 +71,13 @@ INSTALLAZIONE:
 
 4) Copiate tutti i file nelle posizioni indicate (VEDI SOTTO)
 
-5) Moduli: Editate /etc/modprobe.d/nvidia-default.conf in questo modo
+5) Moduli: Create il file /etc/modprobe.d/nvidia-default.conf 
           
           
-          #blacklist nouveau
-          blacklist nvidia
-          blacklist nvidia_drm
-          blacklist nvidia_modeset
-          blacklist nvidia_uvm
+          alias nvidia off
+          alias nvidia_drm off
+          alias nvidia_modeset off
+          alias nvidia_uvm off
           
           
 6) Aggiornate l'initrd: sudo mkinitrd
