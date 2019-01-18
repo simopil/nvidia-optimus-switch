@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [[ $EUID > 0 ]]
+    then echo "Please run as root"
+    exit
+fi
+
 current=$(sed -n '3p' /etc/prime/config)
 
 if [[ $1 = "switch" ]]; then
@@ -7,17 +12,19 @@ if [[ $1 = "switch" ]]; then
                if [[ $current = "I" ]]; then
                  echo "Intel VGA already in use!!!"
                  else
-                 sudo sed -i '1 c2' /etc/prime/config
-                 sudo systemctl start prime_logout.waiting &
-                 #sudo systemctl isolate multi-user.target
+                 echo "Please logout to switch graphics"
+                 sed -i '1 c2' /etc/prime/config
+                 systemctl start prime_logout.waiting &
+                 # systemctl isolate multi-user.target
                  fi
    elif [[ $2 = "nvidia" ]]; then
                if [[ $current = "D" ]]; then
                  echo "Nvidia VGA already in use!!!"
                  else
-                 sudo sed -i '1 c1' /etc/prime/config
-                 sudo systemctl start prime_logout.waiting &
-                 #sudo systemctl isolate multi-user.target
+                 echo "Please logout to switch graphics"
+                 sed -i '1 c1' /etc/prime/config
+                 systemctl start prime_logout.waiting &
+                 # systemctl isolate multi-user.target
                  fi      
       else
                 echo "Use: vga switch intel|nvidia"     
@@ -26,12 +33,12 @@ if [[ $1 = "switch" ]]; then
 elif [[ $1 = "default" ]]; then
      if [[ $2 = "intel" ]]; then
         echo "Boot default: Intel"
-        sudo sed -i '2 cI' /etc/prime/config
+        sed -i '2 cI' /etc/prime/config
    elif [[ $2 = "nvidia" ]]; then
         echo "Boot default: Nvidia"
-        sudo sed -i '2 cD' /etc/prime/config  
+        sed -i '2 cD' /etc/prime/config  
    elif [[ $2 = "keep" ]]; then
-        sudo sed -i '2 cL' /etc/prime/config   
+        sed -i '2 cL' /etc/prime/config   
         echo "Boot default: Latest Session"
     else
         echo "Use: vga default intel|nvidia|keep" 
