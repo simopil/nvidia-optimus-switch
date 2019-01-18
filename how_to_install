@@ -11,11 +11,15 @@ My script provides:
 
 USAGE:
 
-./vga switch [intel | nvidia ]           ## system waits for logout to switch video card
+vga switch [intel | nvidia ]           ## system waits for logout to switch video card
 
-./vga default [intel | nvidia | keep]    ## set default vga on boot
+vga default [intel | nvidia | keep]    ## set default vga on boot
 
 
+
+[[ SETUP SECTION IS OLD!! YOU CAN USE install.sh NOW ]]
+[[ SETUP SECTION IS OLD!! YOU CAN USE install.sh NOW ]]
+[[ SETUP SECTION IS OLD!! YOU CAN USE install.sh NOW ]]
 
 SETUP:
 
@@ -53,6 +57,10 @@ Funzionalità aggiunte:
 >> Possibilità di selezionare la VGA preferita al boot oppure di ricordare quella precedentemente utilizzata
 
 
+[[ SEGUIRE LA GUIDA NON È PIÙ NECESSARIO! È PRESENTE LO SCRIPT install.sh ]]
+[[ SEGUIRE LA GUIDA NON È PIÙ NECESSARIO! È PRESENTE LO SCRIPT install.sh ]]
+[[ SEGUIRE LA GUIDA NON È PIÙ NECESSARIO! È PRESENTE LO SCRIPT install.sh ]]
+
 
 INSTALLAZIONE:
 
@@ -74,8 +82,6 @@ INSTALLAZIONE:
           
         Editate il file prime_logout.waiting
         Dovete sostituire la voce "ksmserver" con un processo che siete sicuri venga arrestato nel momento in cui voi effettuate il logout dal vostro DE
-
-
         
         
         
@@ -113,3 +119,7 @@ INSTALLAZIONE:
 "prime_switch.service"                  ||   core of entire script [CONFIG]
 
 (NOTE: prime_logout.waiting "start" must be set MANUAL, prime_switch must be ON BOOT)
+
+[[ SETUP SECTION IS OLD!! YOU CAN USE install.sh NOW ]]
+[[ SETUP SECTION IS OLD!! YOU CAN USE install.sh NOW ]]
+[[ SETUP SECTION IS OLD!! YOU CAN USE install.sh NOW ]]
