@@ -15,7 +15,6 @@ if [[ $1 = "switch" ]]; then
                  echo "Please logout to switch graphics"
                  sed -i '1 c2' /etc/prime/config
                  systemctl start prime_logout.waiting &
-                 # systemctl isolate multi-user.target
                  fi
    elif [[ $2 = "nvidia" ]]; then
                if [[ $current = "D" ]]; then
@@ -24,7 +23,6 @@ if [[ $1 = "switch" ]]; then
                  echo "Please logout to switch graphics"
                  sed -i '1 c1' /etc/prime/config
                  systemctl start prime_logout.waiting &
-                 # systemctl isolate multi-user.target
                  fi      
       else
                 echo "Use: vga switch intel|nvidia"     
