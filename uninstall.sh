@@ -5,7 +5,7 @@ if [[ $EUID > 0 ]]
     exit
 fi
 
-if [ ! -d /etc/services ] ; then
+if [ ! -d /etc/prime/services ] ; then
   echo "This script is NOT installed, aborting ..."
   exit
 fi
