@@ -13,16 +13,17 @@ My script provides:
 
 USAGE:
 
-vga switch [intel | nvidia ]           ## system waits for logout to switch video card
+vga switch [intel | nvidia ]           >> system waits for logout to switch video card
 
-vga default [intel | nvidia | keep]    ## set default vga on boot
+vga default [intel | nvidia | keep]    >> set default vga on boot
 
 Tested on Optimus laptop with opensuse Tumbleweed and latest kernel (4.12 also works)
 suse-prime package not required, already included.
 
 - READ: if you are not using KDE, prime_logout.waiting daemon will kill your graphic session, to fix it:  
-    > Edit prime_logout.waiting
-    > Change "ksmserver" with a process that you know for sure is stopped when you logout from your DE
+    >> Edit prime_logout.waiting
+    
+    >> Change "ksmserver" with a process that you know for sure is stopped when you logout from your DE
 
 
 
@@ -46,43 +47,39 @@ Testato su laptop con tecnologia NVIDIA Optimus e opensuse Tumbleweed con l'ulti
 il pacchetto suse-prime non è più necessario, è già incluso
 
 - Nota: Se non utilizzate KDE, il demone che attende il log-out interromperà la sessione X. Per impostarlo  correttamente:
-    > Editate il file prime-logout.waiting
-    > Dovete sostituire la voce "ksmserver" con un processo che siete sicuri venga arrestato nel momento in cui voi      effettuate il logout dal vostro DE
+    >> Editate il file prime-logout.waiting
+    
+    >> Dovete sostituire la voce "ksmserver" con un processo che siete sicuri venga arrestato nel momento in cui voi      effettuate il logout dal vostro DE
         
-      # FILE PATHs #  
+File Paths
 
-#RULES
-
-"suse-prime.conf"      /etc/modprobe.d/    ||  modprobe rules for boot and modesetting
+RULES
+>> "suse-prime.conf"      /etc/modprobe.d/    ||  modprobe rules for boot and modesetting
         
-#EXECUTABLES
+EXECUTABLES
+>> "vga"                 /usr/bin/           ||   executable tool, provides you all options
  
-"vga"                 /usr/bin/           ||   executable tool, provides you all options
- 
- 
- 
-#CONFIG_FILES
- 
- "config"              /etc/prime/         ||   main configuration file with all settings, DO NOT EDIT
- 
- "xorg-intel.conf"     /etc/prime/         ||   suse-prime xorg config file of SUSEPrime project (michalsrb)
- 
- "xorg-nvidia.conf"    /etc/prime/         ||   suse-prime xorg config file of SUSEPrime project (michalsrb)
- 
- 
- 
-#SERVICES
- 
- "prime_logout.waiting"   /etc/prime/services/    ||   service that waits you logout to switch graphics
+CONFIG_FILES
+>> "config"              /etc/prime/         ||   main configuration file with all settings, DO NOT EDIT
 
- "prime_switch"           /etc/prime/services/    ||   core of entire script
+>> "xorg-intel.conf"     /etc/prime/         ||   suse-prime xorg config file of SUSEPrime project (michalsrb)
+
+>> "xorg-nvidia.conf"    /etc/prime/         ||   suse-prime xorg config file of SUSEPrime project (michalsrb)
  
- "prime-select.sh"        /etc/prime/services/    ||   prime-select executable of SUSEPrime project (michalsrb)
+ 
+ 
+SERVICES
+ 
+>> "prime_logout.waiting"   /etc/prime/services/    ||   service that waits you logout to switch graphics
+
+>> "prime_switch"           /etc/prime/services/    ||   core of entire script
+ 
+>> "prime-select.sh"        /etc/prime/services/    ||   prime-select executable of SUSEPrime project (michalsrb)
   
 
 
-#SERVICES_CONFIG 
+SERVICES_CONFIG 
 
-"prime_logout.waiting.service"    /etc/systemd/system/     ||   service that waits you logout to switch graphics [CONFIG]
+>> "prime_logout.waiting.service"    /etc/systemd/system/     ||   service that waits you logout to switch graphics [CONFIG]
 
-"prime_switch.service"            /etc/systemd/system/     ||   core of entire script [CONFIG]
+>> "prime_switch.service"            /etc/systemd/system/     ||   core of entire script [CONFIG]
