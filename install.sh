@@ -1,62 +1,71 @@
 #!/bin/bash
 
+function setup
+{
+    echo -e "\nPreparing to install ..."
+  
+    #File install
+    echo -e "\nCopying files ..."
+    mkdir                                         /etc/prime
+    mkdir                                         /etc/prime/services
+    cp config                                     /etc/prime/config
+    cp prime_switch                               /etc/prime/services/prime_switch
+    cp prime_logout.waiting                       /etc/prime/services/prime_logout.waiting
+    cp prime_switch.service                       /etc/systemd/system/prime_switch.service
+    cp prime_logout.waiting.service               /etc/systemd/system/prime_logout.waiting.service
+    cp vga                                        /usr/bin/vga
+    cp suse-prime.conf                            /etc/modprobe.d/suse-prime.conf
+    cp SUSEPrime_project_files/prime-select.sh    /etc/prime/services/prime-select.sh
+    cp SUSEPrime_project_files/xorg-intel.conf    /etc/prime/xorg-intel.conf
+    cp SUSEPrime_project_files/xorg-nvidia.conf   /etc/prime/xorg-nvidia.conf
+    echo "Done."
+  
+    #Permissions
+    echo -e "\nSetting permissions ..."
+    chmod +x /etc/prime/services/prime_switch
+    chmod +x /etc/prime/services/prime_logout.waiting
+    chmod +x /etc/prime/services/prime-select.sh
+    chmod +x /usr/bin/vga
+    echo "Done."
+  
+    #Service
+    echo -e "\nSetting service ..."
+    systemctl enable prime_switch
+    echo "Done."
+  
+    #Modprobe_rules
+    echo -e "\nSetting modprobe rules ..."
+    mkinitrd
+    echo "Done."
+  
+    echo -e "\nInstallation completed successfully! Please REBOOT and use [ vga ] command to know how to use\n"
+}
+
+echo
 if [[ $EUID > 0 ]]
-    then echo "Please run as root"
+    then echo -e "Please run as root\n"
     exit
 fi
 
-echo "Preliminary verification ..."
+echo -e "Welcome to Nvidia Optimus Switch installation! Based to michalsrb and bosim suse-prime project."
+echo -e "Please visit https://github.com/simopil/nvidia-optimus-switch to see differences and report BUGs."
+echo -e "\nPreliminary verification ..."
 
-if ! [ -x "$(command -v prime-select)" ]; then
-  echo "suse-prime package required! Install it with [ sudo zypper in suse-prime ]" >&2
-  exit 1
+if [ -x "$(command -v prime-select)" ]; then
+    echo -e "\nsuse-prime package not required, already included in this project! Uninstall it first" >&2
+    exit 1
 fi
 
 if [ -x "$(command -v optirun)" ]; then
-  echo "Seems you have bumblebee or similar installed, please remove it first!" >&2
-  exit 1
+    echo -e "\nSeems you have bumblebee or similar installed, please remove it first!" >&2
+    exit 1
 fi
 
-if [ ! -d /etc/prime ] ; then
-  echo "Cannot find /etc/prime directory, make sure you have the correct suse-prime package!"
-  exit
-fi
+echo
+read -p "Nvidia Optimus Switch will be installed on your system, continue? (y|n): " confirm
 
-echo "Preparing to install ..."
-
-#File install
-echo "Copying files ..."
-mkdir                             /etc/prime/services
-cp config                         /etc/prime/config
-cp prime_switch                   /etc/prime/services/prime_switch
-cp prime_logout.waiting           /etc/prime/services/prime_logout.waiting
-cp prime_switch.service           /etc/systemd/system/prime_switch.service
-cp prime_logout.waiting.service   /etc/systemd/system/prime_logout.waiting.service
-cp vga                            /usr/bin/vga
-cp suse-prime.conf                /etc/modprobe.d/suse-prime.conf
-echo "Done."
-
-#Permissions
-echo "Setting permissions ..."
-chmod +x /etc/prime/services/prime_switch
-chmod +x /etc/prime/services/prime_logout.waiting
-chmod +x /usr/bin/vga
-echo "Done."
-
-#Service
-echo "Setting service ..."
-systemctl enable prime_switch
-echo "Done."
-
-#Modprobe_rules
-echo "Setting modprobe rules ..."
-mkinitrd
-echo "Done."
-
-echo "Installation completed successfully! Please REBOOT and use [ vga ] command to know how to use"
-
-
-
-
-
-
+case "$confirm" in
+    y|Y ) setup;;
+    n|N ) echo -e "\nInstallation aborted\n";;
+      * ) echo -e "\nInvalid answer, installation aborted\n";;
+esac
