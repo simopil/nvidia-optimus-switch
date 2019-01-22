@@ -11,6 +11,12 @@ My script provides:
 
 >> A choice to change default vga on boot, or remember the latest session
 
+REQUIREMENTS:
+
+Nvidia proprietary drivers: https://en.opensuse.org/SDB:NVIDIA_drivers
+
+Remove "suse-prime" package after driver setup
+
 USAGE:
 
 vga switch [intel | nvidia ]           >> system waits for logout to switch video card
@@ -43,6 +49,12 @@ Funzionalità aggiunte:
 
 >> Possibilità di selezionare la VGA preferita al boot oppure di ricordare quella precedentemente utilizzata
            
+REQUISITI:
+
+Driver nvidia proprietari: https://en.opensuse.org/SDB:NVIDIA_drivers
+
+Dopo il setup dei driver rimuovi il pacchetto "suse-prime"
+
 Testato su laptop con tecnologia NVIDIA Optimus e opensuse Tumbleweed con l'ultimo kernel (testato anche 4.12)       
 il pacchetto suse-prime non è più necessario, è già incluso
 
