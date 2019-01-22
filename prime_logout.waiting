@@ -1,6 +1,8 @@
 #!/bin/bash
 
-while [ $(pgrep -x "ksmserver") > /dev/null ]; do
+procname=$(sed -n '4p' /etc/prime/config)
+
+while [ $(pgrep -x $procname) > /dev/null ]; do
     sleep 2s
 done
 sleep 1s
