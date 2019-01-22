@@ -25,12 +25,8 @@ vga default [intel | nvidia | keep]    >> set default vga on boot
 
 Tested on Optimus laptop with opensuse Tumbleweed and latest kernel (4.12 also works)
 suse-prime package not required, already included.
-
-- READ: if you are not using KDE, prime_logout.waiting daemon will kill your graphic session, to fix it:  
-    >> Edit prime_logout.waiting
-    
-    >> Change "ksmserver" with a process that you know for sure is stopped when you logout from your DE
-
+ 
+- DON'T forget to give a process name during setup that you know for sure is stopped when you logout from your DE (for KDE leave blank)
 
 
 [IT]
@@ -58,10 +54,7 @@ Dopo il setup dei driver rimuovi il pacchetto "suse-prime"
 Testato su laptop con tecnologia NVIDIA Optimus e opensuse Tumbleweed con l'ultimo kernel (testato anche 4.12)       
 il pacchetto suse-prime non è più necessario, è già incluso
 
-- Nota: Se non utilizzate KDE, il demone che attende il log-out interromperà la sessione X. Per impostarlo  correttamente:
-    >> Editate il file prime-logout.waiting
-    
-    >> Dovete sostituire la voce "ksmserver" con un processo che siete sicuri venga arrestato nel momento in cui voi      effettuate il logout dal vostro DE
+NON dimenticare durante l'installazione di fornire il nome di un processo che siete sicuri venga arrestato nel momento in cui effettuate il logout dal vostro DE (se usate KDE lasciate vuoto il campo)
         
 File Paths
 
