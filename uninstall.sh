@@ -15,7 +15,7 @@ function uninstall
     rm                              /etc/systemd/system/prime_switch.service
     rm                              /etc/systemd/system/prime_logout.waiting.service
     rm                              /usr/bin/vga
-    rm                              /etc/modprobe.d/suse-prime.conf
+    rm                              /etc/modprobe.d/optimus-switch.conf
     echo "Done."
 
     #Modprobe_rules
