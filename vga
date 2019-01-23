@@ -8,6 +8,7 @@ if [[ $EUID > 0 ]]; then
 fi
 
 current=$(sed -n '3p' /etc/prime/config)
+bootcard=$(sed -n '2p' /etc/prime/config)
 
 if [[ $1 = "switch" ]]; then
     if [[ $2 = "intel" ]]; then
@@ -27,7 +28,7 @@ if [[ $1 = "switch" ]]; then
             systemctl start prime_logout.waiting &
         fi      
     else echo -e "\nUse: vga switch intel|nvidia\n"     
-fi
+    fi
 
 elif [[ $1 = "default" ]]; then
     if [[ $2 = "intel" ]]; then
@@ -40,15 +41,19 @@ elif [[ $1 = "default" ]]; then
         sed -i '2 cL' /etc/prime/config   
         echo -e "\nBoot default: Latest Session\n"
     else echo -e "\nUse: vga default intel|nvidia|keep\n" 
-fi
+    fi
 
 elif [[ $1 = "query" ]]; then
     echo -e
     bash /etc/prime/services/prime-select.sh $1
-    echo -e
+        case "$bootcard" in
+        I ) echo -e "\nDefault on boot: INTEL gpu\n";;
+        D ) echo -e "\nDefault on boot: NVIDIA gpu\n";;
+        L ) echo -e "\nDefault on boot: Last used\n";;
+    esac
   
 else
     echo -e "\nUSE: vga switch intel|nvidia         >    [ROOT] Hot Switch (logout required)\n"
     echo -e "\n     vga default intel|nvidia|keep   >    [ROOT] Set default VGA on boot (keep > remember latest session)\n"
-    echo -e "\n     vga query                       >    Show current vga\n"
+    echo -e "\n     vga query                       >    Show current vga and boot settings"
 fi
