@@ -14,7 +14,7 @@ function setup
     cp prime_switch.service                       /etc/systemd/system/prime_switch.service
     cp prime_logout.waiting.service               /etc/systemd/system/prime_logout.waiting.service
     cp vga                                        /usr/bin/vga
-    cp suse-prime.conf                            /etc/modprobe.d/suse-prime.conf
+    cp optimus-switch.conf                        /etc/modprobe.d/optimus-switch.conf
     cp SUSEPrime_project_files/prime-select.sh    /etc/prime/services/prime-select.sh
     cp SUSEPrime_project_files/xorg-intel.conf    /etc/prime/xorg-intel.conf
     cp SUSEPrime_project_files/xorg-nvidia.conf   /etc/prime/xorg-nvidia.conf
@@ -31,21 +31,13 @@ function setup
     #Service
     echo -e "\nSetting service ..."
     systemctl enable prime_switch
+    bash /etc/prime/services/prime-select.sh intel
     echo "Done."
   
     #Modprobe_rules
     echo -e "\nSetting modprobe rules ..."
     mkinitrd
     echo "Done."
-    #logout_daemon_procname_setting
-    echo -e "\nConfiguration needed: please type in a process (by name) that you know for sure is stopped when you logout from your DE,"
-    read -p "leave blank if you are using KDE: " procname
-    if [ -z "$procname" ]
-        then echo -e "\nSetting up for KDE Plasma ..."
-    else
-        sed -i '4 c'$procname'' /etc/prime/config
-        echo -e "\nSetting up waiting daemon ..."
-    fi
     
     echo -e "\nInstallation completed successfully! Please REBOOT and use [ vga ] command to know how to use\n"
 }
