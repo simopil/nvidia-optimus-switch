@@ -1,9 +1,7 @@
 #!/bin/bash
 
-procname=$(sed -n '4p' /etc/prime/config)
-
-while [ $(pgrep -x $procname) > /dev/null ]; do
-    sleep 2s
+while (( $(ps -p `pidof X` -o etimes=) > 3 )); do
+    sleep 1s
 done
 sleep 1s
 sudo systemctl isolate multi-user.target
