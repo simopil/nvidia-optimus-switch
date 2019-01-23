@@ -19,14 +19,15 @@ Remove "suse-prime" package after driver setup
 
 USAGE:
 
-vga switch [intel | nvidia ]           >> system waits for logout to switch video card
+vga switch [intel | nvidia ]           >> [ROOT] system waits for logout to switch video card
 
-vga default [intel | nvidia | keep]    >> set default vga on boot
+vga default [intel | nvidia | keep]    >> [ROOT] set default vga on boot (keep > remember latest session)
+
+vga query                              >> show current gpu and boot settings
 
 Tested on Optimus laptop with opensuse Tumbleweed and latest kernel (4.12 also works)
 suse-prime package not required, already included.
- 
-- DON'T forget to give a process name during setup that you know for sure is stopped when you logout from your DE (for KDE leave blank)
+
 
 
 [IT]
@@ -54,12 +55,11 @@ Dopo il setup dei driver rimuovi il pacchetto "suse-prime"
 Testato su laptop con tecnologia NVIDIA Optimus e opensuse Tumbleweed con l'ultimo kernel (testato anche 4.12)       
 il pacchetto suse-prime non è più necessario, è già incluso
 
-NON dimenticare durante l'installazione di fornire il nome di un processo che siete sicuri venga arrestato nel momento in cui effettuate il logout dal vostro DE (se usate KDE lasciate vuoto il campo)
-        
+       
 File Paths
 
 RULES
->> "suse-prime.conf"      /etc/modprobe.d/    ||  modprobe rules for boot and modesetting
+>> "optimus-switch.conf"      /etc/modprobe.d/    ||  modprobe rules for boot and modesetting
         
 EXECUTABLES
 >> "vga"                 /usr/bin/           ||   executable tool, provides you all options
