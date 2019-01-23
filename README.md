@@ -3,7 +3,7 @@
 DESCRIPTION:
 
 What's suse-prime?
-SUSE-PRIME: a tool that lets you choose intel or nvidia card for X session in a Optimus technology laptop, performances are better than bumblebee. (https://github.com/michalsrb/SUSEPrime)
+SUSE-PRIME: a tool that lets you choose intel or nvidia card for X session in a Optimus technology laptop, performances are better than bumblebee. (https://github.com/openSUSE/SUSEPrime/)  (OLD https://github.com/michalsrb/SUSEPrime)
 
 My script provides: 
 
@@ -36,7 +36,7 @@ DESCRIZIONE:
 Trattasi di una serie di script che consentono di estendere le funzionalità di suse-prime
 
 Cosa è suse-prime?
-SUSE-PRIME: consente di avviare una sessione di X con la vga integrata oppure con la nvidia dedicata nei laptop dotati di tecnologia nvidia optimus. (https://github.com/michalsrb/SUSEPrime)
+SUSE-PRIME: consente di avviare una sessione di X con la vga integrata oppure con la nvidia dedicata nei laptop dotati di tecnologia nvidia optimus. (https://github.com/openSUSE/SUSEPrime/)  (OLD https://github.com/michalsrb/SUSEPrime) 
                       
 Funzionalità aggiunte:
 
@@ -55,6 +55,7 @@ Dopo il setup dei driver rimuovi il pacchetto "suse-prime"
 Testato su laptop con tecnologia NVIDIA Optimus e opensuse Tumbleweed con l'ultimo kernel (testato anche 4.12)       
 il pacchetto suse-prime non è più necessario, è già incluso
 
+Please report BUGs or advices to pilia.simone96@gmail.com
        
 File Paths
 
