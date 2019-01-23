@@ -2,12 +2,12 @@
 #
 
 [Unit]
-Description=prime_switch service
+Description=Nvidia Optimus Switch switcher service
 After=multi-user.target
 
 [Service]
 Type=forking
-ExecStart=/bin/sh -c "/etc/prime/services/prime_switch"
+ExecStart=/bin/bash -c "/etc/prime/services/prime_switch"
 ExecStop=
 
 [Install]

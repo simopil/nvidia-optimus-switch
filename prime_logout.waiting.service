@@ -2,11 +2,11 @@
 #
 
 [Unit]
-Description=suse-prime logout waiting service
+Description=Nvidia Optimus Switch user logout check service
 
 [Service]
 Type=forking
-ExecStart=/bin/sh -c "/etc/prime/services/prime_logout.waiting"
+ExecStart=/bin/bash -c "/etc/prime/services/prime_logout.waiting"
 ExecStop=
 
 [Install]
