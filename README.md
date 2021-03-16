@@ -1,4 +1,8 @@
+# DEPRECATED since all features are now available in SUSEPrime
+# ---------------------------------------------------------------
+
 # nvidia-optimus-switch
+
 [EN]
 DESCRIPTION:
 
